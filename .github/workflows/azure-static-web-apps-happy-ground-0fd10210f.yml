@@ -26,20 +26,16 @@ jobs:
           node-version: '18'
           
       - name: Install dependencies
-        run: |
-          cd poke-dex-lab-tecno-tecno-tecno-tecno-tecno/source/pokedex-angular
-          npm install --ignore-scripts
+        run: npm install --ignore-scripts
           
       - name: Build Angular app
-        run: |
-          cd poke-dex-lab-tecno-tecno-tecno-tecno-tecno/source/pokedex-angular
-          npm run build -- --configuration production
+        run: npm run build -- --configuration production
       
       - name: Find build output
         id: find_output
         run: |
           echo "Searching for index.html..."
-          BUILD_PATH=$(find poke-dex-lab-tecno-tecno-tecno-tecno-tecno/source/pokedex-angular/dist -name "index.html" -type f | head -1 | xargs dirname)
+          BUILD_PATH=$(find dist -name "index.html" -type f | head -1 | xargs dirname)
           echo "Found build at: $BUILD_PATH"
           echo "build_path=$BUILD_PATH" >> $GITHUB_OUTPUT
           
@@ -48,8 +44,8 @@ jobs:
           mkdir -p deploy
           cp -r ${{ steps.find_output.outputs.build_path }}/* deploy/
           # Copiar el archivo de configuración si existe
-          if [ -f poke-dex-lab-tecno-tecno-tecno-tecno-tecno/source/pokedex-angular/staticwebapp.config.json ]; then
-            cp poke-dex-lab-tecno-tecno-tecno-tecno-tecno/source/pokedex-angular/staticwebapp.config.json deploy/
+          if [ -f staticwebapp.config.json ]; then
+            cp staticwebapp.config.json deploy/
           fi
           echo "Deploy folder contents:"
           ls -la deploy/
