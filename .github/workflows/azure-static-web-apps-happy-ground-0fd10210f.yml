@@ -14,24 +14,59 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
-    steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
           lfs: false
-      - name: Build And Deploy
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: |
+          cd poke-dex-lab/source/pokedex-angular
+          npm install --ignore-scripts
+          
+      - name: Build Angular app
+        run: |
+          cd poke-dex-lab/source/pokedex-angular
+          npm run build -- --configuration production
+      
+      - name: Find build output
+        id: find_output
+        run: |
+          echo "Searching for index.html..."
+          BUILD_PATH=$(find poke-dex-lab/source/pokedex-angular/dist -name "index.html" -type f | head -1 | xargs dirname)
+          echo "Found build at: $BUILD_PATH"
+          echo "build_path=$BUILD_PATH" >> $GITHUB_OUTPUT
+          
+      - name: Copy to deploy folder
+        run: |
+          mkdir -p deploy
+          cp -r ${{ steps.find_output.outputs.build_path }}/* deploy/
+          echo "Deploy folder contents:"
+          ls -la deploy/
+          
+      - name: Copy to deploy folder
+        run: |
+          mkdir -p deploy
+          cp -r ${{ steps.find_output.outputs.build_path }}/* deploy/
+          # Copiar el archivo de configuración
+          cp poke-dex-lab/source/pokedex-angular/staticwebapp.config.json deploy/
+          echo "Deploy folder contents:"
+          ls -la deploy/
+      
+      - name: Deploy to Azure Static Web Apps
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_GROUND_0FD10210F }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_PLANT_05723CF0F }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
-          # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "/" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "dist/FAEIT.Legacy.IP.Client" # Built app content directory - optional
-          ###### End of Repository/Build Configurations ######
+          app_location: "deploy"
+          skip_app_build: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -44,3 +79,4 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_GROUND_0FD10210F }}
           action: "close"
+
