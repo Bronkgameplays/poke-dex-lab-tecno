@@ -32,7 +32,7 @@ jobs:
           
       - name: Build Angular app
         run: |
-          cd poke-dex-lab-tecno-tecno-tecno-tecno-tecno/pokedex-angular
+          cd poke-dex-lab-tecno-tecno-tecno-tecno-tecno/source/pokedex-angular
           npm run build -- --configuration production
       
       - name: Find build output
@@ -47,15 +47,10 @@ jobs:
         run: |
           mkdir -p deploy
           cp -r ${{ steps.find_output.outputs.build_path }}/* deploy/
-          echo "Deploy folder contents:"
-          ls -la deploy/
-          
-      - name: Copy to deploy folder
-        run: |
-          mkdir -p deploy
-          cp -r ${{ steps.find_output.outputs.build_path }}/* deploy/
-          # Copiar el archivo de configuración
-          cp poke-dex-lab-tecno-tecno-tecno-tecno/source/pokedex-angular/staticwebapp.config.json deploy/
+          # Copiar el archivo de configuración si existe
+          if [ -f poke-dex-lab-tecno-tecno-tecno-tecno-tecno/source/pokedex-angular/staticwebapp.config.json ]; then
+            cp poke-dex-lab-tecno-tecno-tecno-tecno-tecno/source/pokedex-angular/staticwebapp.config.json deploy/
+          fi
           echo "Deploy folder contents:"
           ls -la deploy/
       
@@ -78,8 +73,5 @@ jobs:
         id: closepullrequest
         uses: Azure/static-web-apps-deploy@v1
         with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_HAPPY_GROUND_0FD10210F }}
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_ZEALOUS_PLANT_05723CF0F }}
           action: "close"
-
-
-
