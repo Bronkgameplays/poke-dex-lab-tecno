@@ -1,36 +1,28 @@
-# Pokédex Angular
+# Registro y Configuración de la Cuenta Estudiantil en Microsoft Azure
+Requisitos Previos para Crear una Cuenta en Azure Portal (Cuenta Estudiantil)
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![codecov](https://codecov.io/gh/keilermora/pokedex-angular/branch/master/graph/badge.svg?token=9E0D28IOFT)](https://codecov.io/gh/keilermora/pokedex-angular)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+Antes de acceder al Azure Portal, es necesario cumplir con una serie de condiciones que permiten aprovechar los beneficios de la cuenta gratuita para estudiantes que ofrece Microsoft.
+Requisitos:
+1.	Ser estudiante activo de una institución educativa reconocida, ya sea universidad, colegio o institución técnica. Esta condición es fundamental para acceder al programa Azure for Students.
+2.	Disponer de un correo electrónico institucional (por ejemplo, juan.perez@educomfenalco.edu.co), el cual será utilizado como medio de verificación de la condición estudiantil.
+3.	Tener acceso a Internet y un navegador actualizado para realizar el registro y posterior acceso al portal.
+________________________________________
+Pasos para Registrarte en Azure for Students
+El proceso de registro es sencillo y puede completarse en pocos minutos. A continuación se describen los pasos:
+1.	Dirígete al sitio oficial de Azure for Students.
+2.	Haz clic en el botón “Start free” (Iniciar gratis).
+3.	Ingresa tu correo institucional y selecciona Next (Siguiente).
+4.	Completa los datos solicitados y verifica tu cuenta.
+5.	Una vez aprobado el registro, podrás acceder a tu cuenta de Azure for Students sin necesidad de tarjeta de crédito.
+   
+Nota: La cuenta estudiantil puede renovarse cada año, siempre que el correo institucional siga activo. Es importante verificar periódicamente la validez del correo para no perder los beneficios del programa.
+________________________________________
+Acceso al Azure Portal
+Después de haber completado el registro en Azure for Students, podrás ingresar al portal de administración de recursos de Microsoft Azure siguiendo estos pasos:
+1.	Accede a la dirección portal.azure.com.
+2.	Haz clic en Sign in (Iniciar sesión).
+3.	Introduce tu correo y contraseña asociados a la cuenta de Azure for Students.
+4.	Una vez dentro, tendrás acceso a un panel completo de servicios, herramientas y configuraciones para desplegar aplicaciones, crear recursos y gestionar tu entorno en la nube.
 
-[https://keilermora.github.io/pokedex-angular/](https://keilermora.github.io/pokedex-angular/)
+Desde este punto podrás explorar y poner en práctica los conceptos de infraestructura como servicio (IaaS), plataforma como servicio (PaaS) y software como servicio (SaaS), además de experimentar con herramientas como Azure Static Web Apps, App Services, y Azure DevOps.
 
-La aplicación muestra el listado y el detalle de los Pokémon de las primeras 3 generaciones.
-
-La imagen que representa un Pokémon en el listado muestra las variaciones que estos tuvieron durante las primeras versiones, desde la versión Green (1996) hasta la version Emerald (2005).
-
-Los detalles de un Pokémon individual muestra sus estadísticas base y los registros de la Pokédex de las diferentes versiones.
-
-El proyecto fue desarrollado usando la librería de JavaScript [Angular](https://angular.io/) para crear la interfaz de usuario, en comunicación con la Api RESTful [PokéAPI](https://pokeapi.co/).
-
-## Requisitos mínimos
-
-- [Nodejs](https://nodejs.org) con soporte de largo plazo (LTS).
-- Un navegador web
-
-## Ambiente de pruebas
-
-Ejecutar en la raíz del proyecto:
-
-```
-npm start
-```
-
-## Referencias
-
-- [Angular](https://angular.io/): One framework.
-- [Angular Folder Structure](https://angular-folder-structure.readthedocs.io/en/latest/): Create a skeleton structure which is flexible for projects big or small.
-- [Font Awesome](https://fontawesome.com/): The web's most popular icon set and toolkit.
-- [Normalize.css](https://necolas.github.io/normalize.css/): A modern, HTML5-ready alternative to CSS resets.
-- [PokéAPI](https://pokeapi.co/): The RESTful Pokémon API.
